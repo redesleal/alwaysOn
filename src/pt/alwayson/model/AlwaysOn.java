@@ -3,8 +3,11 @@
  *******************************************************************************/
 package pt.alwayson.model;
 
-import java.util.HashSet;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import pt.alwayson.main.Main;
 import pt.alwayson.model.User;
 // Start of user code (user defined imports)
 
@@ -15,16 +18,24 @@ import pt.alwayson.model.User;
  * 
  * @author redes
  */
-public class AlwaysOn {
+public class AlwaysOn implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Description of the property users.
 	 */
-	public HashSet<User> users = new HashSet<User>();
-
 	/**
 	 * Description of the property name.
 	 */
 	private String name = "";
+
+	/**
+	 * Description of the property users.
+	 */
+	private List<User> users = new ArrayList<>();
 
 	// Start of user code (user defined attributes for AlwaysOn)
 
@@ -39,21 +50,34 @@ public class AlwaysOn {
 		// End of user code
 	}
 
+	public AlwaysOn(String string) {
+		this.name=string;
+	}
+
 	/**
 	 * Description of the method addUser.
 	 * @param user 
 	 */
 	public void addUser(User user) {
-		// Start of user code for method addUser
-		// End of user code
+		try {
+			user.setId(users.get(Main.alwaysOn.getUsers().size() - 1).getId() + 1);
+		} catch (Exception e1) {
+			user.setId(1);
+
+		}
+		this.users.add(user);
 	}
 
 	/**
 	 * Description of the method removeUser.
+	 * @param i 
 	 */
-	public void removeUser() {
-		// Start of user code for method removeUser
-		// End of user code
+	public void removeUser(String i) {
+		for(User user : this.users)
+			if(user.getName().equals(i))
+			{ this.users.remove(user);
+			return;
+			}
 	}
 
 	/**
@@ -63,8 +87,11 @@ public class AlwaysOn {
 	 */
 	public User getUserById(Integer userId) {
 		// Start of user code for method getUserById
-		User getUserById = null;
-		return getUserById;
+		for(User user : this.users)
+		if(user.getId()== userId)
+		return user;
+		
+		return null;
 		// End of user code
 	}
 
@@ -75,16 +102,16 @@ public class AlwaysOn {
 	 * Returns users.
 	 * @return users 
 	 */
-	public HashSet<User> getUsers() {
-		return this.users;
+	public User getUser(Integer position) {
+		return this.users.get(position);
 	}
 
 	/**
 	 * Sets a value to attribute users. 
 	 * @param newUsers 
 	 */
-	public void setUsers(HashSet<User> newUsers) {
-		this.users = newUsers;
+	public void setUser(User newUsers) {
+		this.users.add(newUsers);
 	}
 
 	/**
@@ -101,6 +128,35 @@ public class AlwaysOn {
 	 */
 	public void setName(String newName) {
 		this.name = newName;
+	}
+
+	/**
+	 * Returns users.
+	 * @return users 
+	 */
+	public List<User> getUsers() {
+		return this.users;
+	}
+
+	/**
+	 * Sets a value to attribute users. 
+	 * @param newUsers 
+	 */
+	public void setUsers(List<User> newUsers) {
+		this.users = newUsers;
+	}
+
+	public StringBuilder listUsers() {
+		StringBuilder x= new StringBuilder();
+
+		for (User user :  users) {
+
+			x.append(user.toString() + "\n");
+			System.out.println(user.toString());
+		}
+		return x;
+		// TODO Auto-generated method stub
+		
 	}
 
 }

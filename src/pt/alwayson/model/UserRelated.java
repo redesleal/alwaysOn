@@ -3,7 +3,10 @@
  *******************************************************************************/
 package pt.alwayson.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import pt.alwayson.model.enumTypes.TypeRelationShip;
 // Start of user code (user defined imports)
@@ -15,11 +18,21 @@ import pt.alwayson.model.enumTypes.TypeRelationShip;
  * 
  * @author redes
  */
-public class UserRelated {
+public class UserRelated implements Serializable {
 	/**
-	 * Description of the property users.
+	 * 
 	 */
-	public HashSet<User> users = new HashSet<User>();
+	private static final long serialVersionUID = 2483613987742274592L;
+
+	/**
+	 * Description of the property typeRelationShip.
+	 */
+	private TypeRelationShip typeRelationShip = null;
+
+	/**
+	 * Description of the property messagess.
+	 */
+	private List<Messages> messagess = new ArrayList<>();
 
 	/**
 	 * Description of the property userIdRelated.
@@ -27,10 +40,9 @@ public class UserRelated {
 	private Integer userIdRelated = Integer.valueOf(0);
 
 	/**
-	 * Description of the property typeRelationShip.
+	 * Description of the property users.
 	 */
-	private TypeRelationShip typeRelationShip = null;
-
+	
 	// Start of user code (user defined attributes for UserRelated)
 
 	// End of user code
@@ -48,19 +60,35 @@ public class UserRelated {
 
 	// End of user code
 	/**
-	 * Returns users.
-	 * @return users 
+	 * Returns typeRelationShip.
+	 * @return typeRelationShip 
 	 */
-	public HashSet<User> getUsers() {
-		return this.users;
+	public TypeRelationShip getTypeRelationShip() {
+		return this.typeRelationShip;
 	}
 
 	/**
-	 * Sets a value to attribute users. 
-	 * @param newUsers 
+	 * Sets a value to attribute typeRelationShip. 
+	 * @param newTypeRelationShip 
 	 */
-	public void setUsers(HashSet<User> newUsers) {
-		this.users = newUsers;
+	public void setTypeRelationShip(TypeRelationShip newTypeRelationShip) {
+		this.typeRelationShip = newTypeRelationShip;
+	}
+
+	/**
+	 * Returns messagess.
+	 * @return messagess 
+	 */
+	public List<Messages> getMessagess() {
+		return this.messagess;
+	}
+
+	/**
+	 * Sets a value to attribute messagess. 
+	 * @param newMessagess 
+	 */
+	public void setMessagess(List<Messages> newMessagess) {
+		this.messagess = newMessagess;
 	}
 
 	/**
@@ -79,20 +107,16 @@ public class UserRelated {
 		this.userIdRelated = newUserIdRelated;
 	}
 
-	/**
-	 * Returns typeRelationShip.
-	 * @return typeRelationShip 
-	 */
-	public TypeRelationShip getTypeRelationShip() {
-		return this.typeRelationShip;
+	@Override
+	public String toString() {
+		return "UserRelated [typeRelationShip=" + typeRelationShip + ", messagess=" + messagess + ", userIdRelated="
+				+ userIdRelated + "]";
 	}
 
-	/**
-	 * Sets a value to attribute typeRelationShip. 
-	 * @param newTypeRelationShip 
-	 */
-	public void setTypeRelationShip(TypeRelationShip newTypeRelationShip) {
-		this.typeRelationShip = newTypeRelationShip;
+	public void addMessage(Messages messages) {
+		this.messagess.add(messages);
+		
 	}
+
 
 }

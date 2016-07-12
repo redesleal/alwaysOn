@@ -16,7 +16,27 @@ public enum TypeRelationShip {
 								/**
 								 * Description of Teste.
 								 */
-	Teste,
+	 PROFESSIONAL("profissional"), FAMILY("family"),  FRIENDS("friends");
+	
+	
+	private String value;
+
+	TypeRelationShip(String value) {
+        this.setValue(value);
+    }
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+		
+	 @Override
+	  public String toString() {
+	    return value;
+	  }
 
 	// Start of user code (user defined enum literals for TypeRelationShip)
 
