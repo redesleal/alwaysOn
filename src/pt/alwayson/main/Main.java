@@ -209,7 +209,7 @@ public class Main {
 		btnaddRelation.setBounds(92, 143, 145, 23);
 		panelAddRelation.add(btnaddRelation);
 
-		comboBox_2 = new JComboBox(TypeRelationShip.values());
+		comboBox_2 = new JComboBox<String>();
 		comboBox_2.setBounds(32, 105, 125, 23);
 		panelAddRelation.add(comboBox_2);
 
